@@ -1,25 +1,15 @@
 <?xml version='1.0' encoding='utf-8'?>
 <robot xmlns:xacro="http://www.ros.org/wiki/xacro" name="panda">
   <xacro:macro name="panda_arm" params="arm_id:='panda' description_pkg:='franka_description' connected_to:='' xyz:='0 0 0' rpy:='0 0 0'">
+    <link name="world" />
     <xacro:unless value="${not connected_to}">
-      <joint name="${arm_id}_joint_${connected_to}" type="fixed">
+      <joint name="virtual_joint" type="fixed">
         <parent link="${connected_to}"/>
         <child link="${arm_id}_link0"/>
         <origin rpy="${rpy}" xyz="${xyz}"/>
+        <dynamics damping="1.0"/>
       </joint>
     </xacro:unless>
-
-    <xacro:property name="joint_damping" value="1.0"/>
-
-    <link name="world" />
-
-    <joint name="robot_to_world" type="fixed">
-      <parent link="world" />
-      <child link="${arm_id}_link0" />
-      <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0" />
-      <dynamics damping="${joint_damping}"/>
-    </joint>
-
     <link name="${arm_id}_link0">
       <visual>
         <geometry>
@@ -32,9 +22,9 @@
         </geometry>
       </collision>
       <inertial>
-        <origin xyz="0 0 0" rpy="0 0 0"/>
+        <origin xyz="0 0 0" rpy="0 0 0" />
         <mass value="3.06"/>
-        <inertia ixx="0.3" ixy="0.0" ixz="0.0" iyy="0.3" iyz="0.0" izz="0.3"/>
+        <inertia ixx="0.3" ixy="0.0" ixz="0.0" iyy="0.3" iyz="0.0" izz="0.3" />
       </inertial>
     </link>
     <link name="${arm_id}_link1">
@@ -49,9 +39,9 @@
         </geometry>
       </collision>
       <inertial>
-        <origin xyz="0 0 0" rpy="0 0 0"/>
-        <mass value="2.34"/>
-        <inertia ixx="0.3" ixy="0.0" ixz="0.0" iyy="0.3" iyz="0.0" izz="0.3"/>
+          <origin xyz="0 0 0" rpy="0 0 0" />
+          <mass value="2.34"/>
+          <inertia ixx="0.3" ixy="0.0" ixz="0.0" iyy="0.3" iyz="0.0" izz="0.3" />
       </inertial>
     </link>
     <joint name="${arm_id}_joint1" type="revolute">
@@ -61,7 +51,7 @@
       <child link="${arm_id}_link1"/>
       <axis xyz="0 0 1"/>
       <limit effort="87" lower="-2.8973" upper="2.8973" velocity="2.1750"/>
-      <dynamics damping="${joint_damping}"/>
+      <dynamics damping="1.0"/>
     </joint>
     <link name="${arm_id}_link2">
       <visual>
@@ -75,9 +65,9 @@
         </geometry>
       </collision>
       <inertial>
-        <origin xyz="0 0 0" rpy="0 0 0"/>
+        <origin xyz="0 0 0" rpy="0 0 0" />
         <mass value="2.36"/>
-        <inertia ixx="0.3" ixy="0.0" ixz="0.0" iyy="0.3" iyz="0.0" izz="0.3"/>
+        <inertia ixx="0.3" ixy="0.0" ixz="0.0" iyy="0.3" iyz="0.0" izz="0.3" />
       </inertial>
     </link>
     <joint name="${arm_id}_joint2" type="revolute">
@@ -87,7 +77,7 @@
       <child link="${arm_id}_link2"/>
       <axis xyz="0 0 1"/>
       <limit effort="87" lower="-1.7628" upper="1.7628" velocity="2.1750"/>
-      <dynamics damping="${joint_damping}"/>
+      <dynamics damping="1.0"/>
     </joint>
     <link name="${arm_id}_link3">
       <visual>
@@ -101,9 +91,9 @@
         </geometry>
       </collision>
       <inertial>
-        <origin xyz="0 0 0" rpy="0 0 0"/>
+        <origin xyz="0 0 0" rpy="0 0 0" />
         <mass value="2.38"/>
-        <inertia ixx="0.3" ixy="0.0" ixz="0.0" iyy="0.3" iyz="0.0" izz="0.3"/>
+        <inertia ixx="0.3" ixy="0.0" ixz="0.0" iyy="0.3" iyz="0.0" izz="0.3" />
       </inertial>
     </link>
     <joint name="${arm_id}_joint3" type="revolute">
@@ -113,7 +103,7 @@
       <child link="${arm_id}_link3"/>
       <axis xyz="0 0 1"/>
       <limit effort="87" lower="-2.8973" upper="2.8973" velocity="2.1750"/>
-      <dynamics damping="${joint_damping}"/>
+      <dynamics damping="1.0"/>
     </joint>
     <link name="${arm_id}_link4">
       <visual>
@@ -127,9 +117,9 @@
         </geometry>
       </collision>
       <inertial>
-        <origin xyz="0 0 0" rpy="0 0 0"/>
+        <origin xyz="0 0 0" rpy="0 0 0" />
         <mass value="2.43"/>
-        <inertia ixx="0.3" ixy="0.0" ixz="0.0" iyy="0.3" iyz="0.0" izz="0.3"/>
+        <inertia ixx="0.3" ixy="0.0" ixz="0.0" iyy="0.3" iyz="0.0" izz="0.3" />
       </inertial>
     </link>
     <joint name="${arm_id}_joint4" type="revolute">
@@ -139,7 +129,7 @@
       <child link="${arm_id}_link4"/>
       <axis xyz="0 0 1"/>
       <limit effort="87" lower="-3.0718" upper="-0.0698" velocity="2.1750"/>
-      <dynamics damping="${joint_damping}"/>
+      <dynamics damping="1.0"/>
     </joint>
     <link name="${arm_id}_link5">
       <visual>
@@ -153,9 +143,9 @@
         </geometry>
       </collision>
       <inertial>
-        <origin xyz="0 0 0" rpy="0 0 0"/>
+        <origin xyz="0 0 0" rpy="0 0 0" />
         <mass value="3.5"/>
-        <inertia ixx="0.3" ixy="0.0" ixz="0.0" iyy="0.3" iyz="0.0" izz="0.3"/>
+        <inertia ixx="0.3" ixy="0.0" ixz="0.0" iyy="0.3" iyz="0.0" izz="0.3" />
       </inertial>
     </link>
     <joint name="${arm_id}_joint5" type="revolute">
@@ -165,7 +155,7 @@
       <child link="${arm_id}_link5"/>
       <axis xyz="0 0 1"/>
       <limit effort="12" lower="-2.8973" upper="2.8973" velocity="2.6100"/>
-      <dynamics damping="${joint_damping}"/>
+      <dynamics damping="1.0"/>
     </joint>
     <link name="${arm_id}_link6">
       <visual>
@@ -179,9 +169,9 @@
         </geometry>
       </collision>
       <inertial>
-        <origin xyz="0 0 0" rpy="0 0 0"/>
+        <origin xyz="0 0 0" rpy="0 0 0" />
         <mass value="1.47"/>
-        <inertia ixx="0.3" ixy="0.0" ixz="0.0" iyy="0.3" iyz="0.0" izz="0.3"/>
+        <inertia ixx="0.3" ixy="0.0" ixz="0.0" iyy="0.3" iyz="0.0" izz="0.3" />
       </inertial>
     </link>
     <joint name="${arm_id}_joint6" type="revolute">
@@ -191,7 +181,7 @@
       <child link="${arm_id}_link6"/>
       <axis xyz="0 0 1"/>
       <limit effort="12" lower="-0.0175" upper="3.7525" velocity="2.6100"/>
-      <dynamics damping="${joint_damping}"/>
+      <dynamics damping="1.0"/>
     </joint>
     <link name="${arm_id}_link7">
       <visual>
@@ -205,9 +195,9 @@
         </geometry>
       </collision>
       <inertial>
-        <origin xyz="0 0 0" rpy="0 0 0"/>
+        <origin xyz="0 0 0" rpy="0 0 0" />
         <mass value="0.45"/>
-        <inertia ixx="0.3" ixy="0.0" ixz="0.0" iyy="0.3" iyz="0.0" izz="0.3"/>
+        <inertia ixx="0.3" ixy="0.0" ixz="0.0" iyy="0.3" iyz="0.0" izz="0.3" />
       </inertial>
     </link>
     <joint name="${arm_id}_joint7" type="revolute">
@@ -217,7 +207,7 @@
       <child link="${arm_id}_link7"/>
       <axis xyz="0 0 1"/>
       <limit effort="12" lower="-2.8973" upper="2.8973" velocity="2.6100"/>
-      <dynamics damping="${joint_damping}"/>
+      <dynamics damping="1.0"/>
     </joint>
     <link name="${arm_id}_link8">
       <inertial>
@@ -234,3 +224,4 @@
     </joint>
   </xacro:macro>
 </robot>
+
